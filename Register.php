@@ -345,6 +345,23 @@ window.onload = (e) => {
   teacherCodeDiv.style.display = "none";
 }
 
+// Add an event listener to the select element
+statusSelect.addEventListener('change', function() {
+  // If the selected value is "Teacher"
+  if (this.value === 'Teacher') {
+    // Prompt the user for a password
+    const password = prompt('Please enter the password:');
+    // Check if the password is correct
+    if (password === '123') {
+      // Set the selected status to "Teacher"
+      this.value = 'Teacher';
+    } else {
+      // If the password is incorrect, set the selected status to "Student"
+      this.value = 'Student';
+    }
+  }
+});
+
 statusSelect.addEventListener("change", function() {
   if (statusSelect.value === "Teacher") {
     teacherCodeDiv.style.display = "block";
@@ -361,20 +378,19 @@ statusSelect.addEventListener("change", function() {
 
   let sendButton = document.getElementById("send-code");
   let randomCode = 0;
+
 sendButton.addEventListener("click", function(event) {
   event.preventDefault();
+  updateCountdown();
   randomCode = getRandomCode();
   console.log(randomCode)
   let codeDiv = document.getElementById("random-code");
   codeDiv.textContent = "Random code: " + randomCode;
   //alert("Random code: " + randomCode);
-  setTimeout(function() {
-    codeDiv.textContent = "";
-  }, 60000); // 60 seconds in milliseconds
 });
 
 document.querySelector("form").addEventListener("submit", function(event) {
-  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
+  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode || randomCode == 0) {
     event.preventDefault(); // Prevent form submission
     alert("Please enter the correct teacher code.");
   }
@@ -385,6 +401,7 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
       </form>
       <div id="random-code" style="color:white;"></div>
+      <div id="random-code-countdown" style="color:red;"></div>
     </div>
   </body>
   </html>
