@@ -318,12 +318,12 @@ if(isset($_POST["submit"])){
           <input type="password" class="form-control" id="GvConPass" name="GvConPass" placeholder="Enter con-password*" >
         </div>
 
-        <div class="col-12 form-group" id="teacher-code">
+        <!-- <div class="col-12 form-group" id="teacher-code">
           <label>Teacher Code</label>
           <input type="text" name="teacher_code" class="form-control">
           <button id="send-code">Send Code</button>
           <div id="random-code"></div>
-        </div>
+        </div> -->
         
      
 
@@ -335,7 +335,7 @@ if(isset($_POST["submit"])){
         </div>
 
               
-        <script>
+        <!-- <script>
  var statusSelect = document.getElementById("status");
 var teacherCodeDiv = document.getElementById("teacher-code");
 var teacherCodeInput = document.querySelector("input[name='teacher_code']");
@@ -351,7 +351,6 @@ statusSelect.addEventListener("change", function() {
 });
 
 document.querySelector("form").addEventListener("submit", function(event) {
-  console.log("jhy00");
   if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
     event.preventDefault(); // Prevent form submission
     alert("Please enter the correct teacher code.");
@@ -376,7 +375,7 @@ sendButton.addEventListener("click", function() {
   }, 60000); // 60 seconds in milliseconds
 });
 
-</script>
+</script> -->
 
 
       </form>
