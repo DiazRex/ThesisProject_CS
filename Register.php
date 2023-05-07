@@ -69,7 +69,6 @@ if(isset($_POST["submit"])){
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -77,8 +76,8 @@ if(isset($_POST["submit"])){
     <title>Login Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
-  <style>
-body {
+    <style>
+    body {
       
     }
     h1 {
@@ -102,15 +101,14 @@ body {
       border-radius: 10px;
       box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
-label, p,{
+    label, p,{
       font-weight: bold;
     }
-
-input {
+    input {
       margin-bottom: 10px;
     }
 
-
+    /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -124,6 +122,7 @@ input {
   border-radius: 10px;
 }
 
+/* Modal Content/Box */
 .modal-content {
   background-color: #79c2d0;
   margin: 15% auto; /* 15% from the top and centered */
@@ -132,6 +131,7 @@ input {
   width: 40%; /* Could be more or less, depending on screen size */
 }
 
+/* The Close Button */
 .close {
   color: red;
   float: right;
@@ -152,6 +152,7 @@ input {
   text-align: center;
 }
 
+/* CSS */
 .button-30 {
   align-items: center;
   appearance: none;
@@ -197,8 +198,7 @@ input {
   transform: translateY(2px);
 }
     
-</style>
-
+  </style>
 </head>
   <body style="background-image:url(Pic/STIBcK.png);
   background-position: center center;
@@ -221,6 +221,12 @@ input {
           <label>Last name</label>
           <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter last name*" >
         </div>
+
+        <!-- <div class="col-6 form-group">
+          <label>Section</label>
+          <input type="text" class="form-control" id="section" name="section" placeholder="Enter section*" >
+        </div> -->
+
 
           <div class="col-6 form-group">
         <label>Status</label>
@@ -311,12 +317,12 @@ input {
           <input type="password" class="form-control" id="GvConPass" name="GvConPass" placeholder="Enter con-password*" >
         </div>
 
-        <!-- <div class="col-12 form-group" id="teacher-code">
+        <div class="col-12 form-group" id="teacher-code">
           <label>Teacher Code</label>
           <input type="text" name="teacher_code" class="form-control">
           <button id="send-code">Send Code</button>
           <div id="random-code"></div>
-        </div> -->
+        </div>
         
      
 
@@ -328,12 +334,16 @@ input {
         </div>
 
               
-        <!-- <script>
+        <script>
  var statusSelect = document.getElementById("status");
 var teacherCodeDiv = document.getElementById("teacher-code");
 var teacherCodeInput = document.querySelector("input[name='teacher_code']");
 var submitButton = document.getElementById("submit");
 console.log(teacherCodeInput);
+
+window.onload = (e) => {
+  teacherCodeDiv.style.display = "none";
+}
 
 statusSelect.addEventListener("change", function() {
   if (statusSelect.value === "Teacher") {
@@ -343,14 +353,6 @@ statusSelect.addEventListener("change", function() {
   }
 });
 
-document.querySelector("form").addEventListener("submit", function(event) {
-  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
-    event.preventDefault(); // Prevent form submission
-    alert("Please enter the correct teacher code.");
-  }
-});
-
-
   function getRandomCode() {
     // Generate a random 6-digit code
     let code = Math.floor(Math.random() * 900000) + 100000;
@@ -358,17 +360,27 @@ document.querySelector("form").addEventListener("submit", function(event) {
   }
 
   let sendButton = document.getElementById("send-code");
-sendButton.addEventListener("click", function() {
-  let randomCode = getRandomCode();
+  let randomCode = 0;
+sendButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  randomCode = getRandomCode();
+  console.log(randomCode)
   let codeDiv = document.getElementById("random-code");
   codeDiv.textContent = "Random code: " + randomCode;
-  alert("Random code: " + randomCode);
+  //alert("Random code: " + randomCode);
   setTimeout(function() {
     codeDiv.textContent = "";
   }, 60000); // 60 seconds in milliseconds
 });
 
-</script> -->
+document.querySelector("form").addEventListener("submit", function(event) {
+  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
+    event.preventDefault(); // Prevent form submission
+    alert("Please enter the correct teacher code.");
+  }
+});
+
+</script>
 
 
       </form>
