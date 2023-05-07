@@ -291,9 +291,7 @@ if(isset($_POST["submit"])){
             const selectedStatus = statusDropdown.value;
 
             // Add the appropriate options to the section dropdown based on the selected status
-            if (selectedStatus === 'Teacher') {
-            sectionDropdown.innerHTML = teacherOptions;
-            } else if (selectedStatus === 'Student') {
+            if (selectedStatus === 'Student') {
             sectionDropdown.innerHTML = studentOptions;
             }
           });
@@ -322,6 +320,7 @@ if(isset($_POST["submit"])){
           <input type="text" name="teacher_code" class="form-control">
           <button id="send-code">Send Code</button>
           <div id="random-code"></div>
+          <div id="countdown" style="color:red;"></div>
         </div>
         
      
@@ -335,7 +334,9 @@ if(isset($_POST["submit"])){
 
               
         <script>
- var statusSelect = document.getElementById("status");
+document.addEventListener('DOMContentLoaded', function() {
+
+  var statusSelect = document.getElementById("status");
 var teacherCodeDiv = document.getElementById("teacher-code");
 var teacherCodeInput = document.querySelector("input[name='teacher_code']");
 var submitButton = document.getElementById("submit");
@@ -352,16 +353,18 @@ statusSelect.addEventListener('change', function() {
     // Prompt the user for a password
     const password = prompt('Please enter the password:');
     // Check if the password is correct
-    if (password === '123') {
+    if (password === '123') { // pag pumasok dito
       // Set the selected status to "Teacher"
       this.value = 'Teacher';
+      sectionDropdown.innerHTML = teacherOptions;
     } else {
       // If the password is incorrect, set the selected status to "Student"
       this.value = 'Student';
+      sectionDropdown.innerHTML = studentOptions;
     }
   }
 });
-// ssadasdasd
+
 statusSelect.addEventListener("change", function() {
   if (statusSelect.value === "Teacher") {
     teacherCodeDiv.style.display = "block";
@@ -379,29 +382,56 @@ statusSelect.addEventListener("change", function() {
   let sendButton = document.getElementById("send-code");
   let randomCode = 0;
 
+  let countdownEl = document.getElementById("countdown");
+  const duration = 20;
+  let remainingTime = duration;
+  let countdownRunning = false;
+
+  
 sendButton.addEventListener("click", function(event) {
   event.preventDefault();
-  updateCountdown();
-  randomCode = getRandomCode();
-  console.log(randomCode)
-  let codeDiv = document.getElementById("random-code");
-  codeDiv.textContent = "Random code: " + randomCode;
-  //alert("Random code: " + randomCode);
-});
-
-document.querySelector("form").addEventListener("submit", function(event) {
-  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode || randomCode == 0) {
-    event.preventDefault(); // Prevent form submission
-    alert("Please enter the correct teacher code.");
+  if (!countdownRunning) {
+    remainingTime = 20;
+    randomCode = getRandomCode();
+    console.log(randomCode)
+    let codeDiv = document.getElementById("random-code");
+    codeDiv.textContent = "Random code: " + randomCode;
+    countdownRunning = true;
+    updateCountdown();
   }
 });
 
+function updateCountdown() {
+  if (remainingTime > 0) {
+    remainingTime--;
+    countdownEl.textContent = remainingTime;
+    setTimeout(updateCountdown, 1000);
+  } else {
+    randomCode = 0;
+    countdownRunning = false;
+  }
+}
+
+document.querySelector("form").addEventListener("submit", function(event) {
+  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
+    if(randomCode == 0){
+      event.preventDefault(); // Prevent form submission
+      alert("Invalid, Teachers code runtime.");
+    } else {
+      event.preventDefault(); // Prevent form submission
+      alert("Please enter the correct teacher code.");
+    }
+  }
+});
+
+});
+
+
 </script>
 
-
       </form>
-      <div id="random-code" style="color:white;"></div>
-      <div id="random-code-countdown" style="color:red;"></div>
+    
+      
     </div>
   </body>
   </html>
