@@ -318,10 +318,13 @@ if(isset($_POST["submit"])){
           <input type="password" class="form-control" id="GvConPass" name="GvConPass" placeholder="Enter con-password*" >
         </div>
 
-        <div class="col-12 form-group" id="teacher-code" style="display:none">
+        <div class="col-12 form-group" id="teacher-code">
           <label>Teacher Code</label>
-          <input type="password" name="teacher_code" class="form-control">
+          <input type="text" name="teacher_code" class="form-control">
+          <button id="send-code">Send Code</button>
+          <div id="random-code"></div>
         </div>
+        
      
 
        </div>
@@ -337,6 +340,7 @@ if(isset($_POST["submit"])){
 var teacherCodeDiv = document.getElementById("teacher-code");
 var teacherCodeInput = document.querySelector("input[name='teacher_code']");
 var submitButton = document.getElementById("submit");
+console.log(teacherCodeInput);
 
 statusSelect.addEventListener("change", function() {
   if (statusSelect.value === "Teacher") {
@@ -347,14 +351,36 @@ statusSelect.addEventListener("change", function() {
 });
 
 document.querySelector("form").addEventListener("submit", function(event) {
-  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== "123@") {
+  console.log("jhy00");
+  if (statusSelect.value === "Teacher" && teacherCodeInput.value !== randomCode) {
     event.preventDefault(); // Prevent form submission
     alert("Please enter the correct teacher code.");
   }
 });
+
+
+  function getRandomCode() {
+    // Generate a random 6-digit code
+    let code = Math.floor(Math.random() * 900000) + 100000;
+    return code.toString();
+  }
+
+  let sendButton = document.getElementById("send-code");
+sendButton.addEventListener("click", function() {
+  let randomCode = getRandomCode();
+  let codeDiv = document.getElementById("random-code");
+  codeDiv.textContent = "Random code: " + randomCode;
+  alert("Random code: " + randomCode);
+  setTimeout(function() {
+    codeDiv.textContent = "";
+  }, 60000); // 60 seconds in milliseconds
+});
+
 </script>
- <!-- comment here -->
+
+
       </form>
+      <div id="random-code" style="color:white;"></div>
     </div>
   </body>
   </html>
