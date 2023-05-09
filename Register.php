@@ -105,6 +105,7 @@ if(isset($_POST["submit"])){
       font-weight: bold;
     }
     input {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
       margin-bottom: 10px;
     }
 
@@ -152,6 +153,7 @@ if(isset($_POST["submit"])){
   text-align: center;
 }
 
+
 /* CSS */
 .button-30 {
   align-items: center;
@@ -165,7 +167,7 @@ if(isset($_POST["submit"])){
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono",monospace;
-  height: 48px;
+  height: 38px;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -197,7 +199,73 @@ if(isset($_POST["submit"])){
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+.input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-group input {
+    flex: 1;
+  }
+
+
+
+.button-29 {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-29:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-29:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-29:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
     
+input[type=file]::file-selector-button {
+  border-radius: 40px;
+  border: 0.2px solid black;
+}
+
+input[type=file]::file-selector-button:hover {
+  border-radius: 40px;
+  border: 0.2px solid black;
+  transform: scale(1.1);
+}
   </style>
 </head>
   <body style="background-image:url(Pic/STIBcK.png);
@@ -316,18 +384,22 @@ if(isset($_POST["submit"])){
         </div>
 
         <div class="col-12 form-group" id="teacher-code">
-          <label>Teacher Code</label>
-          <input type="text" name="teacher_code" class="form-control">
-          <button id="send-code" style="Border-radius: 10px;" class="float-right">Send Code</button>
-          <div id="random-code"></div>
-          <div id="countdown" style="color:red;"></div>
-        </div>
+  <label>Teacher Code</label>
+  <div class="input-group">
+    <input type="text" name="teacher_code" class="form-control">&nbsp;&nbsp;
+    <button id="send-code" style="border-radius: 10px;" class="button-30">Send Code</button>
+  </div>
+  <div id="random-code"></div>
+  <div id="countdown" style="color:red;"></div>
+</div>
+
+
         
      
 
        </div>
         
-       <button type="submit" class="btn btn-primary" style="width: 100%;" id="submit" name="submit">Register</button>
+       <button type="submit" class="button-29" style="width: 100%;" id="submit" name="submit">Register</button>
         <div class="text-center" style="Margin-top: 14px; ">
             <label>Already have an account &nbsp<a href="Login.php">Sign-up now</a> </label>
         </div>
