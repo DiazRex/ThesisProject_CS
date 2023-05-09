@@ -318,7 +318,7 @@ if(isset($_POST["submit"])){
         <div class="col-12 form-group" id="teacher-code">
           <label>Teacher Code</label>
           <input type="text" name="teacher_code" class="form-control">
-          <button id="send-code">Send Code</button>
+          <button id="send-code" style="Border-radius: 10px;" class="float-right">Send Code</button>
           <div id="random-code"></div>
           <div id="countdown" style="color:red;"></div>
         </div>
@@ -353,7 +353,7 @@ statusSelect.addEventListener('change', function() {
     // Prompt the user for a password
     const password = prompt('Please enter the password:');
     // Check if the password is correct
-    if (password === '123') { // pag pumasok dito
+    if (password === 'TcH') { // pag pumasok dito
       // Set the selected status to "Teacher"
       this.value = 'Teacher';
       sectionDropdown.innerHTML = teacherOptions;
@@ -383,7 +383,7 @@ statusSelect.addEventListener("change", function() {
   let randomCode = 0;
 
   let countdownEl = document.getElementById("countdown");
-  const duration = 20;
+  const duration = 60;
   let remainingTime = duration;
   let countdownRunning = false;
 
@@ -391,7 +391,7 @@ statusSelect.addEventListener("change", function() {
 sendButton.addEventListener("click", function(event) {
   event.preventDefault();
   if (!countdownRunning) {
-    remainingTime = 20;
+    remainingTime = 60;
     randomCode = getRandomCode();
     console.log(randomCode)
     let codeDiv = document.getElementById("random-code");
