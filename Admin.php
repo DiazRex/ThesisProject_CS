@@ -137,10 +137,25 @@ img:hover {
   }
 
 
+.dash{
+  border-radius: 10px; -webkit-backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6.5px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border: 0.8px solid white;
+}
+
 </style>
   </head>
 
-  <body>
+  <body style="
+  background-image:url(Pic/Bckg_1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
+  color: #350918;
+  
+  " >
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Code Quest
       <?php if (isset($profile_picture)): ?>
@@ -159,11 +174,11 @@ img:hover {
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" >
+          <div class="sidebar-sticky" style="background-color:#A4D0A4;">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#Home">
+                <a class="nav-link" href="#Home">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(current)</span>
                 </a>
@@ -221,12 +236,11 @@ img:hover {
           <div class="container-fluid">
   <div class="row">
     <div class="col-6 col-sm-6 col-md-3 mb-3">
-      
-    <div class="card h-100" style="border-radius: 10px; background-color: #4EC4E1; border-left: 3px solid #cccccc; border-bottom: 5px solid #cccccc;">
+      <div class="dash">
         <div class="card-body d-flex align-items-center justify-content-center">
           <div>
             <h1 class="text-center mb-0"><?php echo $count;?></h1>
-            <p class="text-center mb-0">Registered Student</p>
+            <p class="text-center mb-0"><b>Registered Student</b></p>
           </div>
         </div>
       </div>
@@ -234,31 +248,33 @@ img:hover {
     </div>
 
     <div class="col-6 col-sm-6 col-md-3 mb-3">
-
-      <div class="card h-100 " style="border-radius: 10px; background-color: #ff0000; border-left: 3px solid #cccccc; border-bottom: 5px solid #cccccc;">
+      <div class="dash">
         <div class="card-body d-flex align-items-center justify-content-center">
          <div>
          <h1 class="text-center mb-0"><?php echo $count1;?></h1>
-        <p class="text-center mb-0">Registered Teacher</p>
+        <p class="text-center mb-0"><b>Registered Teacher</b></p>
          </div>
         </div>
       </div>
     </div>
 
     <div class="col-6 col-sm-6 col-md-3 mb-3">
-      <div class="card h-100" style="border-radius: 10px; background-color:#85E14E; border-left: 3px solid #cccccc; border-bottom: 5px solid #cccccc;">
+      <div class="dash">
         <div class="card-body d-flex align-items-center justify-content-center">
           <div>
           <h1 class="text-center mb-0"><?php echo $totalCount;?></h1>
-        <p class="text-center mb-0">Registered Student Section</p>
+         <p class="text-center mb-0"><b>Registered Student Section</b></p>
           </div>
         </div>
       </div>
     </div>
     <div class="col-6 col-sm-6 col-md-3 mb-3">
-      <div class="card h-100" style="border-radius: 10px; background-color:#92B2BA; border-left: 3px solid #cccccc; border-bottom: 5px solid #cccccc;">
+      <div class="dash">
         <div class="card-body d-flex align-items-center justify-content-center">
-          <p class="text-center mb-0">N/A</p>
+        <div>
+        <h1 class="text-center mb-0">...</h1>
+        <p class="text-center mb-0">...</p>
+        </div>
         </div>
       </div>
     </div>
@@ -290,13 +306,13 @@ img:hover {
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="border: 3px outset #333333;">
+            <div class="dash" style="border: 3px outset #fff; border-radius:15px;">
                 <div class="card-header">
-                    <h4>Student Details</h4>
+                    <h4><b>Student Details</b></h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-dark table-bordered table-striped" style=" border: 6px outset #333333;">
+                    <div class="table-responsive" style="border-radius: 15px;">
+                        <table class="table table-dark" style=" border: 3px  #fff;">
                             <thead>
                                 <tr>
                                     <th>ID</th>
