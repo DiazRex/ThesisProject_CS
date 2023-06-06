@@ -37,12 +37,29 @@ img:hover {
     transform: scale(5);
   }
 
+  .dash{
+  border-radius: 10px; -webkit-backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6.5px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border: 0.8px solid white;
+}
 
-
+.Fnt{
+  color:white;
+  font-weight: bold;
+}
     </style>
 
 </head>
-<body>
+<body style="
+  background-image:url(Pic/Bckg_1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
+  color: #350918;
+  
+  " >
 
     <a href="Admin.php" class="btn btn-danger float-end fix-anchor" style="position: fixed; top: 0; right: 0; margin: 7px;">BACK</a>
     <br><br>
@@ -50,7 +67,7 @@ img:hover {
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card" style="border: 3px outset #333333;">
+                <div class="dash" style="border: 3px outset #fff; border-radius:15px;">
                     <div class="card-header">
                     <?php
                         if(isset($_GET['id']))
@@ -64,7 +81,7 @@ img:hover {
                               $student = mysqli_fetch_array($query_run);
                            ?>
                               <div style="display: flex; align-items: center;">
-                                <h4 style="margin-right: 10px;"><?=$student['Username'];?> Details</h4>
+                                <h4 style="margin-right: 10px; color:white; font-weight:bold;"><?=$student['Username'];?> Details</h4>
                                 <img src="<?=$student['ProfileP'];?>" alt="Profile Picture" style="height: 25px; width: 25px; border-radius: 50%; transition: transform 0.1s;">
                                 </div>
                               
@@ -94,37 +111,37 @@ img:hover {
                                 ?>
                                 
                                     <div class="mb-3">
-                                        <label>Username</label>
+                                        <label class="Fnt">Username</label>
                                         <p class="form-control">
                                             <?=$student['Username'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Email</label>
+                                        <label class="Fnt">Email</label>
                                         <p class="form-control">
                                             <?=$student['Email'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Password</label>
+                                        <label class="Fnt">Password</label>
                                         <p class="form-control">
                                             <?=$student['PassW'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Firstname</label>
+                                        <label class="Fnt">Firstname</label>
                                         <p class="form-control">
                                             <?=$student['FirstN'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Lastname</label>
+                                        <label class="Fnt">Lastname</label>
                                         <p class="form-control">
                                             <?=$student['LastN'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>Section</label>
+                                        <label class="Fnt">Section</label>
                                         <p class="form-control">
                                             <?=$student['SectionN'];?>
                                         </p>
