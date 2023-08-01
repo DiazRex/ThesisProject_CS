@@ -14,9 +14,12 @@ if(isset($_POST["submit"])){
             $_SESSION["ID"] = $row["ID"];
 
             if ($row["RoleSTI"] == "Student") {
-                $username = $row["Username"];
-                header("Location: StudentCon.php?username=$username");
-            } else if ($row["RoleSTI"] == "Teacher") {
+              $username = $row["Username"];
+              echo "<script>alert('Teacher and Admin only.'); </script>";
+              echo "<script>window.location.href = 'Login.php';</script>";
+              exit();
+          } 
+            if ($row["RoleSTI"] == "Teacher") {
               $username = $row["Username"];
                 header("Location: content.php?username=$username");
             } else if ($row["RoleSTI"] == "Admin") {
@@ -170,8 +173,8 @@ a:hover {
       </form>
 
     </div>
-    <div class="Guest">
+    <!-- <div class="Guest">
         <a href="GuestCon.php" style="color: Black;">Guest</a>
-    </div>
+    </div> -->
   </body>
 </html>
