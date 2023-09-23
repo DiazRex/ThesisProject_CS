@@ -7,7 +7,9 @@ $database = "thesisweb";
 $conn = new mysqli($host, $user, $password, $database);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$db = new PDO("mysql:host=localhost;dbname=thesisweb", "root", "");
 ?>
 

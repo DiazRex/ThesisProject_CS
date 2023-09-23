@@ -15,19 +15,66 @@ require 'conn.php';
 
     <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+.progress-bar h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+}
+
 .progress {
   margin-top: 30px;
   height: 30px;
-  background-color: #e6e6e6;
+  background-color: black;
   border-radius: 15px;
+  overflow: hidden;
+  animation: animateStripes 2s linear infinite;
 }
+
+.progress {
+  background-size: 30px 30px;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, .15) 50%,
+    rgba(255, 255, 255, .15) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+@keyframes animateStripes {
+  to {
+    background-position: -30px 0;
+  }
+}
+
+
 
 .progress-bar {
   height: 100%;
-  background-color: #007bff;
   border-radius: 15px;
-  transition: width 0.5s ease;
+  width: 100%;
+  background: linear-gradient(to right, #007bff, #00ff00);
+  animation: fillProgress 15s ease;
+  animation-delay: -15s;
+  position: relative;
 }
+
+
+
+@keyframes fillProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+
+
 
 .col-auto {
   margin-right: 20px;
@@ -203,7 +250,7 @@ img:hover {
         </div>
         <div class="col">
           <div class="progress" style="margin-left: 50px;">
-            <div class="progress-bar" id="progress-bar-1"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-1"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -217,7 +264,7 @@ img:hover {
         </div>
         <div class="col">
           <div class="progress" style="margin-left: 19.5px;">
-            <div class="progress-bar" id="progress-bar-2"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-2"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -231,7 +278,7 @@ img:hover {
         </div>
         <div class="col">
           <div class="progress" style="margin-left: 112px;">
-            <div class="progress-bar" id="progress-bar-3"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-3"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -245,7 +292,7 @@ img:hover {
         </div>
         <div class="col">
           <div class="progress" style="margin-left: 86px;">
-            <div class="progress-bar" id="progress-bar-4"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-4"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -259,7 +306,7 @@ img:hover {
         </div>
         <div class="col">
           <div class="progress" style="margin-left: 112px;">
-            <div class="progress-bar" id="progress-bar-5"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-5"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -275,7 +322,7 @@ img:hover {
         
         <div class="col">
           <div class="progress" style="margin-left: 81px;">
-            <div class="progress-bar" id="progress-bar-6"><h3 class="text-center" style="margin-top: 3px;">0</h3></div>
+            <div class="progress-bar" id="progress-bar-6"><h3 class="text-center" style="margin-top: 10px;">0</h3></div>
           </div>
         </div>
       </div>
@@ -305,51 +352,60 @@ img:hover {
 
 
 <script>
-var progressBar1 = document.getElementById("progress-bar-1");
-var progressBar2 = document.getElementById("progress-bar-2");
-var progressBar3 = document.getElementById("progress-bar-3");
-var progressBar4 = document.getElementById("progress-bar-4");
-var progressBar5 = document.getElementById("progress-bar-5");
-var progressBar6 = document.getElementById("progress-bar-6");
-var combinedProgressBar = document.getElementById("progress-bar-combined");
+  window.addEventListener('load', function() {
+  var progressBar1 = document.getElementById("progress-bar-1");
+  var progressBar2 = document.getElementById("progress-bar-2");
+  var progressBar3 = document.getElementById("progress-bar-3");
+  var progressBar4 = document.getElementById("progress-bar-4");
+  var progressBar5 = document.getElementById("progress-bar-5");
+  var progressBar6 = document.getElementById("progress-bar-6");
+  var combinedProgressBar = document.getElementById("progress-bar-combined");
 
-function updateProgressBar(progressBar, progress) {
-  progressBar.style.width = progress + "%";
-  progressBar.querySelector('h3').textContent = progress + "%"; // set the progress text
-  updateCombinedProgressBar(); // update the combined progress bar whenever any individual bar is updated
-}
+  function updateProgressBar(progressBar, progress) {
+    progressBar.style.width = progress + "%";
+    progressBar.querySelector('h3').textContent = progress + "%"; // set the progress text
+    updateCombinedProgressBar(); // update the combined progress bar whenever any individual bar is updated
+  }
 
-function updateCombinedProgressBar() {
-  var totalProgress = 0;
-  totalProgress += parseInt(progressBar1.style.width) || 0;
-  totalProgress += parseInt(progressBar2.style.width) || 0;
-  totalProgress += parseInt(progressBar3.style.width) || 0;
-  totalProgress += parseInt(progressBar4.style.width) || 0;
-  totalProgress += parseInt(progressBar5.style.width) || 0;
-  totalProgress += parseInt(progressBar6.style.width) || 0;
+  function updateCombinedProgressBar() {
+    var totalProgress = 0;
+    totalProgress += parseInt(progressBar1.style.width) || 0;
+    totalProgress += parseInt(progressBar2.style.width) || 0;
+    totalProgress += parseInt(progressBar3.style.width) || 0;
+    totalProgress += parseInt(progressBar4.style.width) || 0;
+    totalProgress += parseInt(progressBar5.style.width) || 0;
+    totalProgress += parseInt(progressBar6.style.width) || 0;
 
-  var averageProgress = totalProgress / 6;
-  combinedProgressBar.style.width = averageProgress + "%";
-  combinedProgressBar.querySelector('h3').textContent = Math.round(averageProgress) + "%"; // set the progress text
-}
+    var averageProgress = totalProgress / 6;
+    combinedProgressBar.style.width = averageProgress + "%";
+    combinedProgressBar.querySelector('h3').textContent = Math.round(averageProgress) + "%"; // set the progress text
+  }
 
-// Example usage: update progress bar 1 to 50%
-updateProgressBar(progressBar1, 50);
+  // Example usage: update progress bar 1 to 50%
+  updateProgressBar(progressBar1, 50);
 
-// Example usage: update progress bar 2 to 75%
-updateProgressBar(progressBar2, 75);
+  // Example usage: update progress bar 2 to 75%
+  updateProgressBar(progressBar2, 75);
 
-// Example usage: update progress bar 3 to 25%
-updateProgressBar(progressBar3, 25);
+  // Example usage: update progress bar 3 to 25%
+  updateProgressBar(progressBar3, 25);
 
-// Example usage: update progress bar 4 to 90%
-updateProgressBar(progressBar4, 90);
+  // Example usage: update progress bar 4 to 90%
+  updateProgressBar(progressBar4, 90);
 
-// Example usage: update progress bar 5 to 10%
-updateProgressBar(progressBar5, 10);
+  // Example usage: update progress bar 5 to 10%
+  updateProgressBar(progressBar5, 10);
 
-// Example usage: update progress bar 6 to 60%
-updateProgressBar(progressBar6, 60);
+  // Example usage: update progress bar 6 to 60%
+  updateProgressBar(progressBar6, 60);
+  
+  // Trigger the animation by adding and removing a class
+  combinedProgressBar.classList.add('animate');
+  setTimeout(function() {
+    combinedProgressBar.classList.remove('animate');
+  }, 15000); // Adjust the delay to match the animation duration
+});
+
 </script>
 
 

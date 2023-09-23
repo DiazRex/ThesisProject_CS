@@ -90,7 +90,7 @@ if(empty($wow)) {
     <style>
     /* CSS for screens smaller than 576px (iPhone SE) */
     @media (max-width: 576px) {
-  #ProgressR,#QuestionC, #Leader{
+  #ManageQuestion, #ProgressR,#QuestionC, #Leader{
     margin-left: 20px;
   }
 
@@ -100,7 +100,7 @@ if(empty($wow)) {
 }
 
 @media (min-width: 577px) {
-  #ProgressR,#QuestionC, #Leader {
+  #ManageQuestion, #ProgressR,#QuestionC, #Leader {
     margin-left: 290px;
   }
 }
@@ -179,6 +179,13 @@ img:hover {
                 <a class="nav-link" href="#Leader">
                   <span  class="bi bi-trophy"></span>
                   &nbsp;<b>Leaderboards</b>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#ManageQuestion">
+                  <span  class="bi bi-trophy"></span>
+                  &nbsp;<b>Manage Question</b>
                 </a>
               </li>
 
@@ -453,6 +460,75 @@ Question
 
 </section>
 
+
+
+<br><br><br>
+
+<!-- -->
+<section class="ManageQuestion" id="ManageQuestion" style="margin-top: 32%; margin-bottom: 32%;" >
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container mt-4">
+    <?php include('message.php'); ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="dash" style="border: 3px outset #fff; border-radius:15px;">
+                <div class="card-header">
+                    <h4><b>Manage Question</b></h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" style="border-radius: 15px;">
+                        <table class="table table-dark" style=" border: 3px  #fff;">
+                            <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Question</th>
+                                  <th>Type</th>
+                                  <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                      $query = "SELECT * FROM default_questions";
+                                      $query_run = mysqli_query($conn, $query);
+
+                                      if(mysqli_num_rows($query_run) > 0){
+                                          $id = 1; // initialize the rank counter
+                                      foreach($query_run as $question)
+                                      {
+                                ?>
+                                <tr>
+                                    <td><?= $id++; ?></td> <!-- print the rank and increment the counter -->
+                                    <td><?= $question['question_title']; ?></td>
+                                    <td><?= $question['question_type']; ?></td>
+                                    <td>
+                                      <a href="question-edit.php?id=<?= $question['id']; ?>" class="btn btn-info btn-sm">Edit</a>
+                                      <form action="code.php" method="POST" class="d-inline">
+                                      </form>
+                                    </td>
+                                </tr>
+                              <?php
+                                      }
+                                    }else
+                                      {
+                                        echo "<h5>No Record Found</h5>";
+                                      }
+                              ?>
+                            </tbody>
+                        </table>
+                      </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
 
 <br><br><br>
 
