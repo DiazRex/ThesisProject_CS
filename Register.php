@@ -266,6 +266,37 @@ input[type=file]::file-selector-button:hover {
   border: 0.2px solid black;
   transform: scale(1.1);
 }
+
+/* CSS for styling the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:black;
+}
+
+.modal-content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+
   </style>
 </head>
   <body style="background-image:url(Pic/STIBcK.png);
@@ -398,6 +429,65 @@ input[type=file]::file-selector-button:hover {
      
 
        </div>
+            <input type="checkbox" id="agree" required>
+            <label for="agree">I agree to the terms and conditions:</label>
+
+            <div id="modal" class="modal">
+              <div class="modal-content">
+                  <span class="close" id="close-modal">&times;</span>
+                  <h2>Terms and Conditions</h2>
+                  Dapat sir mo si sir bernard
+              </div>
+          </div>
+
+          <script>
+              // Get elements from the DOM
+              const checkbox = document.getElementById("agree");
+              const modal = document.getElementById("modal");
+              const closeModal = document.getElementById("close-modal");
+              const submitButton = document.getElementById("submit");
+
+              // Function to enable or disable the registration button based on the checkbox status
+              function updateSubmitButton() {
+                  if (checkbox.checked) {
+                      submitButton.disabled = false;
+                  } else {
+                      submitButton.disabled = true;
+                  }
+              }
+
+              // Event listener for checkbox click
+              checkbox.addEventListener("click", () => {
+                  if (checkbox.checked) {
+                      // Display the modal
+                      modal.style.display = "block";
+                  } else {
+                      // Hide the modal if unchecked
+                      modal.style.display = "none";
+                  }
+                  
+                  // Update the registration button status
+                  updateSubmitButton();
+              });
+
+              // Event listener for closing the modal
+              closeModal.addEventListener("click", () => {
+                  modal.style.display = "none";
+              });
+
+              // Initially, disable the registration button
+              submitButton.disabled = true;
+
+              // Event listener for form submission
+              submitButton.addEventListener("click", (event) => {
+                  if (!checkbox.checked) {
+                      // Prevent form submission if the checkbox is not checked
+                      event.preventDefault();
+                      alert("Please agree to the terms and conditions.");
+                  }
+              });
+            </script>
+
         
        <button type="submit" class="button-29" style="width: 100%;" id="submit" name="submit">Register</button>
         <div class="text-center" style="Margin-top: 14px; ">

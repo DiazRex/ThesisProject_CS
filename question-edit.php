@@ -13,8 +13,33 @@ require 'conn.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Question Edit</title>
+
+<style>
+
+.dash{
+  border-radius: 10px; -webkit-backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6.5px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border: 0.8px solid white;
+}
+
+.Fnt{
+  color:white;
+  font-weight: bold;
+}
+
+</style>
+
 </head>
-<body>
+<body style="
+  background-image:url(Pic/Bckg_1.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
+  color: #350918;
+  
+  ">
   
     <div class="container mt-5">
 
@@ -22,7 +47,7 @@ require 'conn.php';
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card" style="border: 3px outset #333333;">
+            <div class="dash" style="border: 1.2px solid white;">
                     <div class="card-header">
                         <h4>Question Edit 
                             <a href="content.php#ManageQuestion" class="btn btn-danger float-end">BACK</a>
