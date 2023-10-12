@@ -33,16 +33,18 @@ if ($_SERVER["REQUEST_METHOD"] === 'GET') {
     $options = array($result['a'], $result['b'], $result['c'], $result['d']);
     shuffle($options);
 
-    $sql = "SELECT q.answer FROM default_questions q JOIN multiple_choice m ON q.id = m.question_id WHERE q.id = :id";
+    $sql = "SELECT q.question_title, q.answer FROM default_questions q JOIN multiple_choice m ON q.id = m.question_id WHERE q.id = :id";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':id', $question_id);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $answer = $row["answer"];
+    $question_title = $row["question_title"];
 
     if ($answer) {
       $result['answer'] = $answer;
+      $result['question_title'] = $question_title;
     }
 
     $stmt = $db->prepare($sql);
