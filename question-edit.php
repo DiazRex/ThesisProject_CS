@@ -163,12 +163,19 @@ require 'conn.php';
     if($type === 'multiple_choice'){
       try {
         //Multiple Choice
-        $stmt = $db->prepare("UPDATE multiple_choice SET a=:a,b=:b,c=:c,d=:d WHERE id = :id");
+        $stmt = $db->prepare("UPDATE multiple_choice JOIN default_questions ON multiple_choice.question_id = default_questions.id SET 
+        multiple_choice.a=:a,
+        multiple_choice.b=:b,
+        multiple_choice.c=:c,
+        multiple_choice.d=:d,
+        default_questions.answer=:answer
+        WHERE default_questions.id = :id");
         // bind parameters
         $stmt->bindParam(':a', $_POST['a']);
         $stmt->bindParam(':b', $_POST['b']);
         $stmt->bindParam(':c', $_POST['c']);
         $stmt->bindParam(':d', $_POST['d']);
+        $stmt->bindParam(":answer", $_POST['answer']);
         $stmt->bindParam(':id', $_GET['id']);
 
         $stmt->execute();
