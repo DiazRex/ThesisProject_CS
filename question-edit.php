@@ -206,10 +206,6 @@ require 'conn.php';
     }
     }
 
-    
-
-    
-
     header("Location: content.php#ManageQuestion");
   }
 
