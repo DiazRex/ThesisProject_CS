@@ -1,0 +1,7 @@
+POST http://localhost/ThesisProject_CS/api/get-login-info.php HTTP/1.1
+content-type: 'application/json'
+
+{
+  "username": "test",
+  "password": "test"
+}
